@@ -1,0 +1,19 @@
+{% for message in app.flashes('info') %}
+        {{ message }}
+{% endfor %}
+
+{{ form(form) }}
+
+<br>
+
+{% for todo in todos %}
+    <li>{{ todo.title }} | {{todo.status.value}} |
+        <a href="{{path('app_toggle', {'id': todo.id})}}">
+            {% if todo.status == constant('App\\Enum\\TodoStatus::DONE') %}
+                Mark as Not Done
+            {% else %}
+                Mark as Done
+            {% endif %}
+        </a>
+    </li>
+{% endfor %}
